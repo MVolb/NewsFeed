@@ -1,7 +1,6 @@
 package com.martin.volb.newsapp.ui.newsFeed;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
@@ -21,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CustomViewHodler> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<Article> dataList;
     private Context context;
     private ArticleClickListener listener;
@@ -34,14 +29,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CustomViewHodl
 
     @NonNull
     @Override
-    public CustomViewHodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.news_element, parent, false);
-        return new CustomViewHodler(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHodler holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Article article = dataList.get(position);
         holder.textTitle.setText(article.getTitle());
         holder.textContent.setText(article.getDescription());
@@ -67,13 +62,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.CustomViewHodl
         return dataList.size();
     }
 
-    public class CustomViewHodler extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         private TextView textTitle;
         private TextView textContent;
         private ImageView coverImage;
 
-        public CustomViewHodler(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.view = itemView;
             textTitle = view.findViewById(R.id.title);
