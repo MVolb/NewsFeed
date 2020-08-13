@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">NewsApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_news">News</string>
+    <string name="title_weather">Weather</string>
+    <string name="title_saved_news">Saved News</string>
+    <string name="apiKey">9f0a5f2d67c94a77ba0f7d846f2c3b6b</string>
+    <string name="title_string">News</string>
 </resources>

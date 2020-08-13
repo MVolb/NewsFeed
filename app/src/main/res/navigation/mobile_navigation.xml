@@ -6,20 +6,20 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.martin.volb.newsapp.ui.newsFeed.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
         android:id="@+id/navigation_home"
-        android:name="com.martin.volb.newsapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:name="com.martin.volb.newsapp.ui.weather.HomeFragment"
+        android:label="@string/title_weather"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.martin.volb.newsapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.martin.volb.newsapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.martin.volb.newsapp.ui.savedNews.NotificationsFragment"
+        android:label="@string/title_saved_news"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
