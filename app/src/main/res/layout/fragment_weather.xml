@@ -12,4 +12,5 @@
         android:layout_height="match_parent"
         airbnb:lottie_autoPlay="true"
         airbnb:lottie_loop="true"/>
+    <!--TODO: add Textviews for every weather atribute -->
 </FrameLayout>

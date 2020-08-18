@@ -6,4 +6,5 @@
     <string name="news_api_key">9f0a5f2d67c94a77ba0f7d846f2c3b6b</string>
     <string name="title_string">News</string>
     <string name="weather_api_key">f0f1896b6a51acebffd8784518c56eed</string>
+    <string name="no_location_permission">To access weather data, please enable location permission in settings</string>
 </resources>

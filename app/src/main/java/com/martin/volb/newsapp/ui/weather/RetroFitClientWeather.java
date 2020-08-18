@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroFitClientWeather {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://api.darksky.net/forecast/";
+    private static final String BASE_URL = "https://api.darksky.net/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

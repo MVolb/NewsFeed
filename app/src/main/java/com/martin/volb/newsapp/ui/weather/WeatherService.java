@@ -1,12 +1,12 @@
 package com.martin.volb.newsapp.ui.weather;
 
-import com.martin.volb.newsapp.ui.newsFeed.ArticleResponse;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 
 public interface WeatherService {
-    @GET("weather")
-    Call<WeatherResponse> getCurrentWeather(@Query("q") String location, @Query("appid") String apiKey);
+    @GET("forecast/{key}/{lat},{lng}?units=auto")
+    Call<WeatherResponse> getCurrentWeather(@Path("key") String key,
+                                            @Path("lat") double lat,
+                                            @Path("lng") double lng);
 }
