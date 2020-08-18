@@ -16,7 +16,7 @@ public class NewsPresenter {
 
     public void requestData(String apiKey) {
         newsView.showProgress();
-        GetDataService service = RetroFitClientNews.getRetrofitInstance().create(GetDataService.class);
+        NewsService service = RetroFitClientNews.getRetrofitInstance().create(NewsService.class);
         Call<ArticleResponse> call = service.getArticles(Locale.getDefault().getCountry().toLowerCase(), apiKey);
 
         call.enqueue(new Callback<ArticleResponse>() {

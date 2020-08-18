@@ -3,73 +3,73 @@ package com.martin.volb.newsapp.ui.weather;
 import com.google.gson.annotations.SerializedName;
 
 public class WeatherData {
-    @SerializedName("temp")
-    private double temp;
-    @SerializedName("feels_like")
-    private double feelsLike;
-    @SerializedName("temp_min")
-    private double tempMin;
-    @SerializedName("temp_max")
-    private double tempMax;
+    @SerializedName("precipProbability")
+    private String precipProbability;
+    @SerializedName("icon")
+    private String icon;
+    @SerializedName("precipType")
+    private String precipType;
+    @SerializedName("temperature")
+    private double temperature;
     @SerializedName("pressure")
-    private int pressure;
-    @SerializedName("humidity")
-    private int humidity;
+    private double pressure;
+    @SerializedName("windSpeed")
+    private double windSpeed;
 
-    public WeatherData(double temp, double feelsLike, double tempMin, double tempMax, int pressure, int humidity) {
-        this.temp = temp;
-        this.feelsLike = feelsLike;
-        this.tempMin = tempMin;
-        this.tempMax = tempMax;
+    public WeatherData(String precipProbability, String icon, String precipType, double temperature, double pressure, double windSpeed) {
+        this.precipProbability = precipProbability;
+        this.icon = icon;
+        this.precipType = precipType;
+        this.temperature = temperature;
         this.pressure = pressure;
-        this.humidity = humidity;
+        this.windSpeed = windSpeed;
     }
 
-    public double getTemp() {
-        return temp;
+    public String getPrecipProbability() {
+        return precipProbability;
     }
 
-    public void setTemp(double temp) {
-        this.temp = temp;
+    public void setPrecipProbability(String precipProbability) {
+        this.precipProbability = precipProbability;
     }
 
-    public double getFeelsLike() {
-        return feelsLike;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setFeelsLike(double feelsLike) {
-        this.feelsLike = feelsLike;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
-    public double getTempMin() {
-        return tempMin;
+    public String getPrecipType() {
+        return precipType;
     }
 
-    public void setTempMin(double tempMin) {
-        this.tempMin = tempMin;
+    public void setPrecipType(String precipType) {
+        this.precipType = precipType;
     }
 
-    public double getTempMax() {
-        return tempMax;
+    public double getTemperature() {
+        return temperature;
     }
 
-    public void setTempMax(double tempMax) {
-        this.tempMax = tempMax;
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
     }
 
-    public int getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
+    public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
-    public int getHumidity() {
-        return humidity;
+    public double getWindSpeed() {
+        return windSpeed;
     }
 
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
     }
 }
