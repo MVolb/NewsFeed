@@ -2,7 +2,6 @@ package com.martin.volb.newsapp.ui.newsFeed;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +42,11 @@ public class NewsFragment extends Fragment implements NewsView, ArticleClickList
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.requestData(getString(R.string.apiKey));
+                presenter.requestData(getString(R.string.news_api_key));
             }
         });
 
-        presenter.requestData(getString(R.string.apiKey));
+        presenter.requestData(getString(R.string.news_api_key));
     }
 
     @Override
