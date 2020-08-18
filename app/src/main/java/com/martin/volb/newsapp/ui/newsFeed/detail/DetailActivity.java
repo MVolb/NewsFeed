@@ -21,7 +21,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_news_detail);
+        setContentView(R.layout.activity_news_detail);
         imageView = findViewById(R.id.image_detail);
         titleTextView = findViewById(R.id.title_text_view);
         detailTextView = findViewById(R.id.detail_text_view);
