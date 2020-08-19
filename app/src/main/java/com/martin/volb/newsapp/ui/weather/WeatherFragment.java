@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,11 +21,35 @@ import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.martin.volb.newsapp.R;
 
+import org.w3c.dom.Text;
+
 public class WeatherFragment extends Fragment implements WeatherView, LocationListener {
     private LottieAnimationView currentWeatherAnimationView;
     private WeatherPresenter presenter;
     private LocationManager locationManager;
     private static final int LOCATION_REQUEST_CODE = 100;
+
+    private TextView currentTemperatureView;
+    private TextView currentWindView;
+    private TextView currentPressureView;
+    private TextView currentPrecipitationTypeView;
+    private TextView currentPrecipitationProbabilityView;
+
+
+
+    //forecastViews
+    private LottieAnimationView forecastWeatherAnimationFirstDayView;
+    private TextView forecastTemperatureFirstDayView;
+    private TextView forecastDescriptionFirstDayView;
+
+    private LottieAnimationView forecastWeatherAnimationSecondDayView;
+    private TextView forecastTemperatureSecondDayView;
+    private TextView forecastDescriptionSecondDayView;
+
+    private LottieAnimationView forecastWeatherAnimationThirdDayView;
+    private TextView forecastTemperatureThirdDayView;
+    private TextView forecastDescriptionThirdDayView;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +65,24 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         } else {
             Toast.makeText(getContext(),R.string.no_location_permission, Toast.LENGTH_LONG).show();
         }
+
+        currentTemperatureView = root.findViewById(R.id.current_weather_temperature_tv);
+        currentWindView = root.findViewById(R.id.current_weather_wind_tv);
+        currentPressureView = root.findViewById(R.id.current_weather_pressure_tv);
+        currentPrecipitationTypeView = root.findViewById(R.id.current_weather_precipitation_type_tv);
+        currentPrecipitationProbabilityView = root.findViewById(R.id.current_weather_precipitation_probability_tv);
+
+        forecastWeatherAnimationFirstDayView = root.findViewById(R.id.forecast_weather_animation_view_first);
+        forecastTemperatureFirstDayView = root.findViewById(R.id.forecast_weather_first_temperature_tv);
+        forecastDescriptionFirstDayView = root.findViewById(R.id.forecast_weather_first_day_tv);
+
+        forecastWeatherAnimationSecondDayView = root.findViewById(R.id.forecast_weather_animation_view_second);
+        forecastTemperatureSecondDayView = root.findViewById(R.id.forecast_weather_second_temperature_tv);
+        forecastDescriptionSecondDayView = root.findViewById(R.id.forecast_weather_second_day_tv);
+
+        forecastWeatherAnimationThirdDayView = root.findViewById(R.id.forecast_weather_animation_view_third);
+        forecastTemperatureThirdDayView = root.findViewById(R.id.forecast_weather_third_temperature_tv);
+        forecastDescriptionThirdDayView = root.findViewById(R.id.forecast_weather_third_day_tv);
 
         return root;
     }
