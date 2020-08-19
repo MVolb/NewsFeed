@@ -23,16 +23,28 @@ public enum WeatherIcon {
         return icon;
     }
 
-    /**
-     * clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
-     * @param icon
-     * @return
-     */
     public static WeatherIcon fromString(String icon) {
         switch (icon) {
             case "clear-day":
                 return CLEAR_DAY;
-                //TODO: cases with all weathertypes
+            case "clear-night":
+                return CLEAR_NIGHT;
+            case "rain":
+                return RAIN;
+            case "snow":
+                return SNOW;
+            case "sleet":
+                return SLEET;
+            case "wind":
+                return WIND;
+            case "fog":
+                return FOG;
+            case "cloudy":
+                return CLOUDY;
+            case "partly-cloudy-day":
+                return PARTLY_CLOUDY_DAY;
+            case "partly-cloudy-night":
+                return PARTLY_CLOUDY_NIGHT;
             default:
                 return null;
         }
