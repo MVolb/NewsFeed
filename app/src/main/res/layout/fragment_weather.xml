@@ -10,7 +10,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/current_weather_animation_view_current"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         airbnb:lottie_autoPlay="true"
         airbnb:lottie_loop="true" />
 
@@ -88,8 +88,8 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/forecast_weather_animation_view_first"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 airbnb:lottie_autoPlay="true"
                 airbnb:lottie_loop="true" />
 

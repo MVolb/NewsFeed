@@ -102,9 +102,21 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @Override
     public void showCurrentWeather(WeatherResponse weatherResponse) {
-        WeatherIcon icon = WeatherIcon.fromString(weatherResponse.currentWeather.getIcon());
-        currentWeatherAnimationView.setAnimation(icon.getIcon());
+        WeatherIcon currentWeatherIcon = WeatherIcon.fromString(weatherResponse.currentWeather.getIcon());
+        currentWeatherAnimationView.setAnimation(currentWeatherIcon.getIcon());
         currentWeatherAnimationView.playAnimation();
+
+        WeatherIcon forecastWeatherIconFirst = WeatherIcon.fromString(weatherResponse.dailyWeather.getWeatherData().get(0).getIcon());
+        forecastWeatherAnimationThirdDayView.setAnimation(forecastWeatherIconFirst.getIcon());
+        forecastWeatherAnimationThirdDayView.playAnimation();
+
+        WeatherIcon forecastWeatherIconSecond = WeatherIcon.fromString(weatherResponse.dailyWeather.getWeatherData().get(1).getIcon());
+        forecastWeatherAnimationSecondDayView.setAnimation(forecastWeatherIconSecond.getIcon());
+        forecastWeatherAnimationSecondDayView.playAnimation();
+
+        WeatherIcon forecastWeatherIconThird = WeatherIcon.fromString(weatherResponse.dailyWeather.getWeatherData().get(2).getIcon());
+        forecastWeatherAnimationThirdDayView.setAnimation(forecastWeatherIconThird.getIcon());
+        forecastWeatherAnimationThirdDayView.playAnimation();
     }
 
     @Override
