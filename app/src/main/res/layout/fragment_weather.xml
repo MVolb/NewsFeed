@@ -1,16 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:airbnb="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.weather.WeatherFragment">
-
+    
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/current_weather_animation_view"
+        android:id="@+id/current_weather_animation_view_current"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         airbnb:lottie_autoPlay="true"
-        airbnb:lottie_loop="true"/>
-    <!--TODO: add Textviews for every weather atribute -->
-</FrameLayout>
+        airbnb:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/current_weather_temperature_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/current_weather_wind_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/current_weather_pressure_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/current_weather_precipitation_type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/current_weather_precipitation_probability_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:id="@+id/forecast_weather_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/forecast_weather_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/forecast_weather_first_day_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="12sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/current_weather_animation_view_forecast_first"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                airbnb:lottie_autoPlay="true"
+                airbnb:lottie_loop="true" />
+
+            <TextView
+                android:id="@+id/forecast_weather_first_temperature_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/forecast_weather_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/forecast_weather_second_day_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="12sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/current_weather_animation_view_forecast_second"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                airbnb:lottie_autoPlay="true"
+                airbnb:lottie_loop="true" />
+
+            <TextView
+                android:id="@+id/forecast_weather_second_temperature_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/forecast_weather_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/forecast_weather_third_day_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="12sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/current_weather_animation_view_forecast_third"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                airbnb:lottie_autoPlay="true"
+                airbnb:lottie_loop="true" />
+
+            <TextView
+                android:id="@+id/forecast_weather_third_temperature_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:padding="2dp"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
