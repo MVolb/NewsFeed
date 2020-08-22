@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,7 +23,9 @@ import androidx.fragment.app.Fragment;
 import com.airbnb.lottie.LottieAnimationView;
 import com.martin.volb.newsapp.R;
 
-import org.w3c.dom.Text;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class WeatherFragment extends Fragment implements WeatherView, LocationListener {
     private LottieAnimationView currentWeatherAnimationView;
@@ -31,9 +35,10 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     private TextView currentTemperatureView;
     private TextView currentWindView;
-    private TextView currentPressureView;
     private TextView currentPrecipitationTypeView;
     private TextView currentPrecipitationProbabilityView;
+    private TextView currentSummaryView;
+    private TextView current_weather_location_tv;
     private ForecastView forecastViewFirst;
     private ForecastView forecastViewSecond;
     private ForecastView forecastViewThird;
@@ -55,9 +60,10 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
         currentTemperatureView = root.findViewById(R.id.current_weather_temperature_tv);
         currentWindView = root.findViewById(R.id.current_weather_wind_tv);
-        currentPressureView = root.findViewById(R.id.current_weather_pressure_tv);
         currentPrecipitationTypeView = root.findViewById(R.id.current_weather_precipitation_type_tv);
         currentPrecipitationProbabilityView = root.findViewById(R.id.current_weather_precipitation_probability_tv);
+        currentSummaryView = root.findViewById(R.id.current_weather_summary_tv);
+        current_weather_location_tv = root.findViewById(R.id.current_weather_location);
         forecastViewFirst = root.findViewById(R.id.forecast_view_first);
         forecastViewSecond = root.findViewById(R.id.forecast_view_second);
         forecastViewThird = root.findViewById(R.id.forecast_view_third);
@@ -83,6 +89,13 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         WeatherIcon currentWeatherIcon = WeatherIcon.fromString(weatherResponse.currentWeather.getIcon());
         currentWeatherAnimationView.setAnimation(currentWeatherIcon.getIcon());
         currentWeatherAnimationView.playAnimation();
+        currentTemperatureView.setText("Temp: " + weatherResponse.currentWeather.getTemperature() + " °C");
+        currentWindView.setText("Wind: " + weatherResponse.currentWeather.getWindSpeed() + " m/s");
+        currentPrecipitationTypeView.setText("Type: " + weatherResponse.currentWeather.getPrecipType().toUpperCase());
+        double currentPrecipitationProbability = Double.valueOf(weatherResponse.getCurrentWeather().getPrecipProbability()) * 100;
+        currentPrecipitationProbabilityView.setText("Prob: " + (int)currentPrecipitationProbability + "%");
+        currentSummaryView.setText(weatherResponse.currentWeather.getSummary());
+
 
         forecastViewFirst.setWeather(weatherResponse.getDailyWeather().getWeatherData().get(0));
         forecastViewSecond.setWeather(weatherResponse.getDailyWeather().getWeatherData().get(1));
@@ -107,6 +120,20 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
     @Override
     public void onLocationChanged(Location location) {
         presenter.requestData(getString(R.string.weather_api_key), location.getLatitude(), location.getLongitude());
+        current_weather_location_tv.setText(getLocationName(location));
+    }
+
+    private String getLocationName(Location location) {
+        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            Address address = addresses.get(0);
+            return address.getLocality() + ", " + address.getSubLocality();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     @Override

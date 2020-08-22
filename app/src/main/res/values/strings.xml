@@ -7,4 +7,5 @@
     <string name="title_string">News</string>
     <string name="weather_api_key">f0f1896b6a51acebffd8784518c56eed</string>
     <string name="no_location_permission">To access weather data, please enable location permission in settings</string>
+    <string name="read_full_article">Read full Article</string>
 </resources>

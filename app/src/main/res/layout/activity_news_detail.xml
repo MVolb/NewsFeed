@@ -16,19 +16,29 @@
             android:scaleType="centerCrop" />
 
         <TextView
+            android:layout_marginTop="@dimen/margin"
             android:id="@+id/title_text_view"
             android:layout_width="match_parent"
             android:paddingHorizontal="@dimen/margin"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
+            android:layout_marginTop="@dimen/margin"
             android:id="@+id/detail_text_view"
             android:paddingHorizontal="@dimen/margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
+
+        <Button
+            android:layout_marginTop="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/read_full_article"/>
 
     </LinearLayout>
 </ScrollView>
