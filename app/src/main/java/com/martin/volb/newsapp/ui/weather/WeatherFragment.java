@@ -34,22 +34,9 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
     private TextView currentPressureView;
     private TextView currentPrecipitationTypeView;
     private TextView currentPrecipitationProbabilityView;
-
-
-
-    //forecastViews
-    private LottieAnimationView forecastWeatherAnimationFirstDayView;
-    private TextView forecastTemperatureFirstDayView;
-    private TextView forecastDescriptionFirstDayView;
-
-    private LottieAnimationView forecastWeatherAnimationSecondDayView;
-    private TextView forecastTemperatureSecondDayView;
-    private TextView forecastDescriptionSecondDayView;
-
-    private LottieAnimationView forecastWeatherAnimationThirdDayView;
-    private TextView forecastTemperatureThirdDayView;
-    private TextView forecastDescriptionThirdDayView;
-
+    private ForecastView forecastViewFirst;
+    private ForecastView forecastViewSecond;
+    private ForecastView forecastViewThird;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +50,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         } else if (canAskForLocationPermission()) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
         } else {
-            Toast.makeText(getContext(),R.string.no_location_permission, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.no_location_permission, Toast.LENGTH_LONG).show();
         }
 
         currentTemperatureView = root.findViewById(R.id.current_weather_temperature_tv);
@@ -71,18 +58,9 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         currentPressureView = root.findViewById(R.id.current_weather_pressure_tv);
         currentPrecipitationTypeView = root.findViewById(R.id.current_weather_precipitation_type_tv);
         currentPrecipitationProbabilityView = root.findViewById(R.id.current_weather_precipitation_probability_tv);
-
-        forecastWeatherAnimationFirstDayView = root.findViewById(R.id.forecast_weather_animation_view_first);
-        forecastTemperatureFirstDayView = root.findViewById(R.id.forecast_weather_first_temperature_tv);
-        forecastDescriptionFirstDayView = root.findViewById(R.id.forecast_weather_first_day_tv);
-
-        forecastWeatherAnimationSecondDayView = root.findViewById(R.id.forecast_weather_animation_view_second);
-        forecastTemperatureSecondDayView = root.findViewById(R.id.forecast_weather_second_temperature_tv);
-        forecastDescriptionSecondDayView = root.findViewById(R.id.forecast_weather_second_day_tv);
-
-        forecastWeatherAnimationThirdDayView = root.findViewById(R.id.forecast_weather_animation_view_third);
-        forecastTemperatureThirdDayView = root.findViewById(R.id.forecast_weather_third_temperature_tv);
-        forecastDescriptionThirdDayView = root.findViewById(R.id.forecast_weather_third_day_tv);
+        forecastViewFirst = root.findViewById(R.id.forecast_view_first);
+        forecastViewSecond = root.findViewById(R.id.forecast_view_second);
+        forecastViewThird = root.findViewById(R.id.forecast_view_third);
 
         return root;
     }
@@ -106,17 +84,9 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         currentWeatherAnimationView.setAnimation(currentWeatherIcon.getIcon());
         currentWeatherAnimationView.playAnimation();
 
-        WeatherIcon forecastWeatherIconFirst = WeatherIcon.fromString(weatherResponse.dailyWeather.getWeatherData().get(0).getIcon());
-        forecastWeatherAnimationThirdDayView.setAnimation(forecastWeatherIconFirst.getIcon());
-        forecastWeatherAnimationThirdDayView.playAnimation();
-
-        WeatherIcon forecastWeatherIconSecond = WeatherIcon.fromString(weatherResponse.dailyWeather.getWeatherData().get(1).getIcon());
-        forecastWeatherAnimationSecondDayView.setAnimation(forecastWeatherIconSecond.getIcon());
-        forecastWeatherAnimationSecondDayView.playAnimation();
-
-        WeatherIcon forecastWeatherIconThird = WeatherIcon.fromString(weatherResponse.dailyWeather.getWeatherData().get(2).getIcon());
-        forecastWeatherAnimationThirdDayView.setAnimation(forecastWeatherIconThird.getIcon());
-        forecastWeatherAnimationThirdDayView.playAnimation();
+        forecastViewFirst.setWeather(weatherResponse.getDailyWeather().getWeatherData().get(0));
+        forecastViewSecond.setWeather(weatherResponse.getDailyWeather().getWeatherData().get(1));
+        forecastViewThird.setWeather(weatherResponse.getDailyWeather().getWeatherData().get(2));
     }
 
     @Override
@@ -144,7 +114,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (grantResults.length > 0 &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               requestLocation();
+                requestLocation();
             }
         }
     }
