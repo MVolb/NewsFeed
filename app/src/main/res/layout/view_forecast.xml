@@ -14,7 +14,9 @@
         android:fontFamily="monospace"
         android:gravity="center"
         android:padding="2dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        android:textStyle="bold"/>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/forecast_weather_animation_view"
@@ -32,6 +34,7 @@
         android:fontFamily="monospace"
         android:gravity="center"
         android:padding="2dp"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textColor="@color/text_color"/>
 
 </LinearLayout>

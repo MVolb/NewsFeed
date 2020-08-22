@@ -45,8 +45,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         builder.downloader(new OkHttp3Downloader(context));
         builder.build()
                 .load(article.getUrlToImage())
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.missing_image_background)
+                .error(R.drawable.missing_image_background)
                 .into(holder.coverImage);
 
         holder.view.setOnClickListener(new View.OnClickListener() {

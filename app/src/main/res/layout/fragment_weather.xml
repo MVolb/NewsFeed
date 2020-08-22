@@ -3,12 +3,15 @@
     xmlns:airbnb="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/overlay"
+        android:padding="4dp"
         tools:context=".ui.weather.WeatherFragment">
 
         <TextView
@@ -18,7 +21,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="6dp"
             android:gravity="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"/>
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/current_weather_animation_view_current"
@@ -36,7 +41,9 @@
             android:layout_marginBottom="14dp"
             android:fontFamily="monospace"
             android:gravity="center"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/text_color"
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +65,8 @@
                     android:layout_gravity="start"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/text_color"/>
 
                 <TextView
                     android:id="@+id/current_weather_wind_tv"
@@ -67,7 +75,8 @@
                     android:layout_gravity="start"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/text_color"/>
 
             </LinearLayout>
 
@@ -84,7 +93,8 @@
                     android:layout_gravity="start"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/text_color"/>
 
                 <TextView
                     android:id="@+id/current_weather_precipitation_type_tv"
@@ -93,7 +103,8 @@
                     android:layout_gravity="start"
                     android:fontFamily="monospace"
                     android:gravity="center"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/text_color"/>
 
             </LinearLayout>
         </LinearLayout>

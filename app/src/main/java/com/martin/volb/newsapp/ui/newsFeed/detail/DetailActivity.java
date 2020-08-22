@@ -1,9 +1,13 @@
 package com.martin.volb.newsapp.ui.newsFeed.detail;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,16 +37,35 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.bookmark) {
+            //addToBookmarks();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void showArticle(Article article) {
         titleTextView.setText(article.getTitle());
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttp3Downloader(this));
         builder.build()
                 .load(article.getUrlToImage())
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.missing_image_background)
+                .error(R.drawable.missing_image_background)
                 .into(imageView);
 
         detailTextView.setText(article.getContent());
     }
+
+
 }

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:dividerPadding="@dimen/margin"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/overlay">
 
         <ImageView
             android:id="@+id/image_detail"
@@ -16,29 +18,33 @@
             android:scaleType="centerCrop" />
 
         <TextView
-            android:layout_marginTop="@dimen/margin"
             android:id="@+id/title_text_view"
             android:layout_width="match_parent"
-            android:paddingHorizontal="@dimen/margin"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingHorizontal="@dimen/margin"
+            android:textColor="@color/text_color"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_marginTop="@dimen/margin"
             android:id="@+id/detail_text_view"
-            android:paddingHorizontal="@dimen/margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:paddingHorizontal="@dimen/margin"
+            android:textColor="@color/text_color"
             android:textSize="16sp" />
 
         <Button
-            android:layout_marginTop="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="100dp"
             android:gravity="center"
-            android:text="@string/read_full_article"/>
+            android:text="@string/read_full_article"
+            android:textStyle="bold"
+            android:layout_marginBottom="300dp"/>
 
     </LinearLayout>
 </ScrollView>
