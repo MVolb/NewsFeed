@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/navigation_bar_height"
     android:background="@drawable/app_background">
 
     <LinearLayout
@@ -29,7 +30,7 @@
             android:id="@+id/current_weather_animation_view_current"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             airbnb:lottie_autoPlay="true"
             airbnb:lottie_loop="true" />
 
@@ -113,6 +114,7 @@
             android:id="@+id/forecast_weather_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin"
             android:orientation="horizontal">
 
             <com.martin.volb.newsapp.ui.weather.ForecastView

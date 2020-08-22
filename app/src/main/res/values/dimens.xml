@@ -5,4 +5,5 @@
     <dimen name="margin">16dp</dimen>
     <dimen name="detail_image">200dp</dimen>
     <dimen name="forecast_view_size">100dp</dimen>
+    <dimen name="navigation_bar_height">48dp</dimen>
 </resources>

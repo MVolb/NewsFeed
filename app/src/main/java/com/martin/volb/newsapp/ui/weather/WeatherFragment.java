@@ -81,7 +81,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @SuppressLint("MissingPermission")
     private void requestLocation() {
-        locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, this, getActivity().getMainLooper());
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, getActivity().getMainLooper());
     }
 
     @Override
@@ -129,7 +129,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         try {
             addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             Address address = addresses.get(0);
-            return address.getLocality() + ", " + address.getSubLocality();
+            return address.getLocality() + ", " + address.getCountryName();
         } catch (IOException e) {
             e.printStackTrace();
             return "";
@@ -148,13 +148,16 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
+        provider.getBytes();
     }
 
     @Override
     public void onProviderEnabled(String provider) {
+        provider.getBytes();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
+        provider.getBytes();
     }
 }
