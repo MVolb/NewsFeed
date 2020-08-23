@@ -3,6 +3,7 @@ package com.martin.volb.newsapp.ui.weather;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -10,6 +11,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
     private ForecastView forecastViewFirst;
     private ForecastView forecastViewSecond;
     private ForecastView forecastViewThird;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -129,8 +132,35 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @Override
     public void onLocationChanged(Location location) {
+        Float[] savedLocation = getSavedLocation();
+        Double lastLocationLatitude = savedLocation[0].doubleValue();
+        Double lastLocationLongitude = savedLocation[1].doubleValue();
+
+        if (lastLocationLatitude != 0.0 && lastLocationLongitude != 0.0 ) {
+            presenter.requestData(getString(R.string.weather_api_key), lastLocationLatitude, lastLocationLongitude);
+            current_weather_location_tv.setText(getLocationName(location));
+        } else {
+            presenter.requestData(getString(R.string.weather_api_key), location.getLatitude(), location.getLongitude());
+        }
+
         presenter.requestData(getString(R.string.weather_api_key), location.getLatitude(), location.getLongitude());
+        lastLocationLatitude = location.getLatitude();
+        lastLocationLongitude = location.getLongitude();
+        Float lastLocationLatitudeSave = lastLocationLatitude.floatValue();
+        Float lastLocationLongitudeSave = lastLocationLongitude.floatValue();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putFloat("lastLocationLatitudeSave", lastLocationLatitudeSave);
+        editor.putFloat("lastLocationLongitudeSave", lastLocationLongitudeSave);
+        editor.apply();
         current_weather_location_tv.setText(getLocationName(location));
+    }
+
+    private Float[] getSavedLocation() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        Float[] savedLocation = {preferences.getFloat("lastLocationLatitudeSave", 0.0f), preferences.getFloat("lastLocationLongitudeSave", 0.0f)};
+        return savedLocation;
     }
 
     private String getLocationName(Location location) {
