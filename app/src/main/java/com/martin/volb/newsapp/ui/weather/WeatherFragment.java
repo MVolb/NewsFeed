@@ -91,7 +91,11 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         currentWeatherAnimationView.playAnimation();
         currentTemperatureView.setText("Temp: " + weatherResponse.currentWeather.getTemperature() + " °C");
         currentWindView.setText("Wind: " + weatherResponse.currentWeather.getWindSpeed() + " m/s");
-        currentPrecipitationTypeView.setText("Type: " + weatherResponse.currentWeather.getPrecipType().toUpperCase());
+        if (weatherResponse.currentWeather.getPrecipType() != null) {
+            currentPrecipitationTypeView.setText("Type: " + weatherResponse.currentWeather.getPrecipType().toUpperCase());
+        } else {
+            currentPrecipitationTypeView.setText("Type: -");
+        }
         double currentPrecipitationProbability = Double.valueOf(weatherResponse.getCurrentWeather().getPrecipProbability()) * 100;
         currentPrecipitationProbabilityView.setText("Prob: " + (int)currentPrecipitationProbability + "%");
         currentSummaryView.setText(weatherResponse.currentWeather.getSummary());
@@ -115,6 +119,12 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
     @Override
     public void showError(String error) {
 
+    }
+
+    @Override
+    public void onDetach() {
+        locationManager.removeUpdates(this);
+        super.onDetach();
     }
 
     @Override

@@ -1,9 +1,13 @@
 package com.martin.volb.newsapp.ui.newsFeed.detail;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     private ImageView imageView;
     private TextView titleTextView;
     private TextView detailTextView;
+    private Button newsExternalButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,12 +34,26 @@ public class DetailActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image_detail);
         titleTextView = findViewById(R.id.title_text_view);
         detailTextView = findViewById(R.id.detail_text_view);
+        newsExternalButton = findViewById(R.id.newsExternalButton);
 
-        Article article = (Article) getIntent().getSerializableExtra(ARTICLE_INTENT_EXTRA_KEY);
+        final Article article = (Article) getIntent().getSerializableExtra(ARTICLE_INTENT_EXTRA_KEY);
 
         if (article != null) {
             showArticle(article);
         }
+
+        if (getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+            getActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        newsExternalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(article.getUrl()));
+                startActivity(browserIntent);
+            }
+        });
     }
 
     @Override
@@ -66,6 +85,8 @@ public class DetailActivity extends AppCompatActivity {
 
         detailTextView.setText(article.getContent());
     }
+
+
 
 
 }
