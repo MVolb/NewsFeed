@@ -1,8 +1,11 @@
 package com.martin.volb.newsapp.ui.savedNews;
 
-import android.widget.Toast;
+import android.content.Context;
+
+import androidx.room.Room;
 
 import com.martin.volb.newsapp.ui.newsFeed.Article;
+import com.martin.volb.newsapp.ui.newsFeed.ArticleDao;
 import com.martin.volb.newsapp.ui.newsFeed.NewsView;
 
 import java.util.List;
@@ -14,20 +17,21 @@ public class SavedNewsPresenter {
         this.newsView = newsView;
     }
 
-    public void requestData() {
+    public void requestData(Context context) {
+        final ArticleDao articleDao = Room.databaseBuilder(context, ArticleDatabase.class, "saved_articles").build().articleDao();
         newsView.showProgress();
-
-        if (getSavedArticles().size() > 0) {
-            newsView.showNewsFeed(getSavedArticles());
-        }else {
-            newsView.showError("No bookmarks found.");
-        }
-
-    }
-
-    private List<Article> getSavedArticles() {
-        //get from db
-        return null;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Article> articles = articleDao.getAll();
+                newsView.hideProgress();
+                if (!articles.isEmpty()) {
+                    newsView.showNewsFeed(articles);
+                } else {
+                    newsView.showError("No bookmarks found.");
+                }
+            }
+        }).start();
     }
 
 }

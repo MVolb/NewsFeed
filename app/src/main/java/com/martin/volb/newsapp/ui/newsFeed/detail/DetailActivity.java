@@ -10,22 +10,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.martin.volb.newsapp.R;
 import com.martin.volb.newsapp.ui.newsFeed.Article;
+import com.martin.volb.newsapp.ui.savedNews.ArticleDatabase;
 import com.squareup.picasso.Picasso;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailView {
     public static final String ARTICLE_INTENT_EXTRA_KEY = "article";
     private ImageView imageView;
     private TextView titleTextView;
     private TextView detailTextView;
     private Button newsExternalButton;
+    private MenuItem bookmarkItem;
+    private Article article;
+    private DetailPresenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,8 +41,8 @@ public class DetailActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.title_text_view);
         detailTextView = findViewById(R.id.detail_text_view);
         newsExternalButton = findViewById(R.id.newsExternalButton);
-
-        final Article article = (Article) getIntent().getSerializableExtra(ARTICLE_INTENT_EXTRA_KEY);
+        article = (Article) getIntent().getSerializableExtra(ARTICLE_INTENT_EXTRA_KEY);
+        presenter = new DetailPresenter(article, this);
 
         if (article != null) {
             showArticle(article);
@@ -54,20 +60,23 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(browserIntent);
             }
         });
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-
-        return true;
+        bookmarkItem = menu.findItem(R.id.bookmark);
+        presenter.checkIfBookmarked(getApplicationContext());
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.bookmark) {
-            //addToBookmarks();
+            presenter.onBookmarkToggled(getApplicationContext());
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -87,6 +96,13 @@ public class DetailActivity extends AppCompatActivity {
     }
 
 
-
-
+    @Override
+    public void showArticleBookmarked(final boolean bookmarked) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                bookmarkItem.setIcon(bookmarked ? R.drawable.ic_bookmark_true : R.drawable.ic_bookmark_false);
+            }
+        });
+    }
 }

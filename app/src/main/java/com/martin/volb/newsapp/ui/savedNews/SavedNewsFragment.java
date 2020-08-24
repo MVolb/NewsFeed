@@ -52,18 +52,23 @@ public class SavedNewsFragment extends Fragment implements NewsView, ArticleClic
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.requestData();
+                presenter.requestData(getContext());
             }
         });
 
-        presenter.requestData();
+        presenter.requestData(getContext());
     }
 
     @Override
-    public void showNewsFeed(List<Article> articles) {
-        adapter = new NewsAdapter(articles, getContext(), this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    public void showNewsFeed(final List<Article> articles) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter = new NewsAdapter(articles, getContext(), SavedNewsFragment.this);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+        });
     }
 
     @Override
@@ -77,8 +82,13 @@ public class SavedNewsFragment extends Fragment implements NewsView, ArticleClic
     }
 
     @Override
-    public void showError(String error) {
-        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+    public void showError(final String error) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

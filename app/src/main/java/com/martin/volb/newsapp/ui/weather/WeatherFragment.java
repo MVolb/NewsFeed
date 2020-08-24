@@ -50,9 +50,12 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_weather, container, false);
-        currentWeatherAnimationView = root.findViewById(R.id.current_weather_animation_view_current);
+        setViews(root);
         presenter = new WeatherPresenter(this);
         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
+        requestWeatherForSavedLocation();
+
         if (isLocationPermissionEnabled()) {
             requestLocation();
         } else if (canAskForLocationPermission()) {
@@ -61,6 +64,22 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
             Toast.makeText(getContext(), R.string.no_location_permission, Toast.LENGTH_LONG).show();
         }
 
+        return root;
+    }
+
+    private void requestWeatherForSavedLocation() {
+        Float[] savedLocation = getSavedLocation();
+        double lastLocationLatitude = savedLocation[0].doubleValue();
+        double lastLocationLongitude = savedLocation[1].doubleValue();
+
+        if (lastLocationLatitude != 0.0f && lastLocationLongitude != 0.0f) {
+            presenter.requestData(getString(R.string.weather_api_key), lastLocationLatitude, lastLocationLongitude);
+            current_weather_location_tv.setText(getLocationName(lastLocationLatitude, lastLocationLongitude));
+        }
+    }
+
+    private void setViews(View root) {
+        currentWeatherAnimationView = root.findViewById(R.id.current_weather_animation_view_current);
         currentTemperatureView = root.findViewById(R.id.current_weather_temperature_tv);
         currentWindView = root.findViewById(R.id.current_weather_wind_tv);
         currentPrecipitationTypeView = root.findViewById(R.id.current_weather_precipitation_type_tv);
@@ -70,8 +89,6 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         forecastViewFirst = root.findViewById(R.id.forecast_view_first);
         forecastViewSecond = root.findViewById(R.id.forecast_view_second);
         forecastViewThird = root.findViewById(R.id.forecast_view_third);
-
-        return root;
     }
 
     private boolean isLocationPermissionEnabled() {
@@ -84,7 +101,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @SuppressLint("MissingPermission")
     private void requestLocation() {
-        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, getActivity().getMainLooper());
+        locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, this, getActivity().getMainLooper());
     }
 
     @Override
@@ -100,7 +117,7 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
             currentPrecipitationTypeView.setText("Type: -");
         }
         double currentPrecipitationProbability = Double.valueOf(weatherResponse.getCurrentWeather().getPrecipProbability()) * 100;
-        currentPrecipitationProbabilityView.setText("Prob: " + (int)currentPrecipitationProbability + "%");
+        currentPrecipitationProbabilityView.setText("Prob: " + (int) currentPrecipitationProbability + "%");
         currentSummaryView.setText(weatherResponse.currentWeather.getSummary());
 
 
@@ -110,18 +127,8 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
     }
 
     @Override
-    public void showProgress() {
-
-    }
-
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
     public void showError(String error) {
-
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -132,29 +139,16 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @Override
     public void onLocationChanged(Location location) {
-        Float[] savedLocation = getSavedLocation();
-        Double lastLocationLatitude = savedLocation[0].doubleValue();
-        Double lastLocationLongitude = savedLocation[1].doubleValue();
-
-        if (lastLocationLatitude != 0.0 && lastLocationLongitude != 0.0 ) {
-            presenter.requestData(getString(R.string.weather_api_key), lastLocationLatitude, lastLocationLongitude);
-            current_weather_location_tv.setText(getLocationName(location));
-        } else {
-            presenter.requestData(getString(R.string.weather_api_key), location.getLatitude(), location.getLongitude());
-        }
-
         presenter.requestData(getString(R.string.weather_api_key), location.getLatitude(), location.getLongitude());
-        lastLocationLatitude = location.getLatitude();
-        lastLocationLongitude = location.getLongitude();
-        Float lastLocationLatitudeSave = lastLocationLatitude.floatValue();
-        Float lastLocationLongitudeSave = lastLocationLongitude.floatValue();
+        double lastLocationLatitude = location.getLatitude();
+        double lastLocationLongitude = location.getLongitude();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putFloat("lastLocationLatitudeSave", lastLocationLatitudeSave);
-        editor.putFloat("lastLocationLongitudeSave", lastLocationLongitudeSave);
+        editor.putFloat("lastLocationLatitudeSave", (float) lastLocationLatitude);
+        editor.putFloat("lastLocationLongitudeSave", (float) lastLocationLongitude);
         editor.apply();
-        current_weather_location_tv.setText(getLocationName(location));
+        current_weather_location_tv.setText(getLocationName(location.getLatitude(), location.getLongitude()));
     }
 
     private Float[] getSavedLocation() {
@@ -163,11 +157,11 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
         return savedLocation;
     }
 
-    private String getLocationName(Location location) {
+    private String getLocationName(double lat, double lng) {
         Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
         List<Address> addresses = null;
         try {
-            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            addresses = geocoder.getFromLocation(lat, lng, 1);
             Address address = addresses.get(0);
             return address.getLocality() + ", " + address.getCountryName();
         } catch (IOException e) {
@@ -188,16 +182,13 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
-        provider.getBytes();
     }
 
     @Override
     public void onProviderEnabled(String provider) {
-        provider.getBytes();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        provider.getBytes();
     }
 }
