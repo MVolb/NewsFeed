@@ -1,6 +1,7 @@
-package com.martin.volb.newsapp.ui.weather;
+package com.martin.volb.newsapp.ui.weather.data;
 
 import com.google.gson.annotations.SerializedName;
+import com.martin.volb.newsapp.ui.weather.data.WeatherData;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,6 @@
-package com.martin.volb.newsapp.ui.weather;
+package com.martin.volb.newsapp.ui.weather.network;
+
+import com.martin.volb.newsapp.ui.weather.data.WeatherResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,5 +1,10 @@
 package com.martin.volb.newsapp.ui.newsFeed;
 
+import com.martin.volb.newsapp.ui.newsFeed.data.Article;
+import com.martin.volb.newsapp.ui.newsFeed.data.ArticleResponse;
+import com.martin.volb.newsapp.ui.newsFeed.network.NewsService;
+import com.martin.volb.newsapp.ui.newsFeed.network.RetroFitClientNews;
+
 import java.util.ArrayList;
 import java.util.Locale;
 

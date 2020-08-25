@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_saved_news"
-        android:name="com.martin.volb.newsapp.ui.savedNews.SavedNewsFragment"
+        android:name="com.martin.volb.newsapp.ui.newsFeed.savedNews.SavedNewsFragment"
         android:label="@string/title_saved_news"
         tools:layout="@layout/fragment_saved_news" />
 </navigation>

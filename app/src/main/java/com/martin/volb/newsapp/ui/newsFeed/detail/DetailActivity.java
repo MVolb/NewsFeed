@@ -10,17 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.martin.volb.newsapp.R;
-import com.martin.volb.newsapp.ui.newsFeed.Article;
-import com.martin.volb.newsapp.ui.savedNews.ArticleDatabase;
+import com.martin.volb.newsapp.ui.newsFeed.data.Article;
 import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {

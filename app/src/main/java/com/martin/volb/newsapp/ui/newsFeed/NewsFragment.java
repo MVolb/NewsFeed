@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.martin.volb.newsapp.R;
+import com.martin.volb.newsapp.ui.newsFeed.data.Article;
 import com.martin.volb.newsapp.ui.newsFeed.detail.DetailActivity;
 
 import java.util.List;

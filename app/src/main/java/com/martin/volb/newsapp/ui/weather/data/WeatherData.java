@@ -1,4 +1,4 @@
-package com.martin.volb.newsapp.ui.weather;
+package com.martin.volb.newsapp.ui.weather.data;
 
 import com.google.gson.annotations.SerializedName;
 

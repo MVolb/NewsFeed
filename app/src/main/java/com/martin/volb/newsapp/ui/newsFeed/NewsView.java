@@ -1,5 +1,7 @@
 package com.martin.volb.newsapp.ui.newsFeed;
 
+import com.martin.volb.newsapp.ui.newsFeed.data.Article;
+
 import java.util.List;
 
 public interface NewsView {

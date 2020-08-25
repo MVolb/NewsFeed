@@ -1,4 +1,4 @@
-package com.martin.volb.newsapp.ui.weather;
+package com.martin.volb.newsapp.ui.weather.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

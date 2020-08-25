@@ -24,6 +24,8 @@ import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.martin.volb.newsapp.R;
+import com.martin.volb.newsapp.ui.weather.data.WeatherData;
+import com.martin.volb.newsapp.ui.weather.data.WeatherResponse;
 
 import java.io.IOException;
 import java.util.List;
@@ -106,19 +108,20 @@ public class WeatherFragment extends Fragment implements WeatherView, LocationLi
 
     @Override
     public void showCurrentWeather(WeatherResponse weatherResponse) {
-        WeatherIcon currentWeatherIcon = WeatherIcon.fromString(weatherResponse.currentWeather.getIcon());
+        WeatherData currentWeather = weatherResponse.getCurrentWeather();
+        WeatherIcon currentWeatherIcon = WeatherIcon.fromString(currentWeather.getIcon());
         currentWeatherAnimationView.setAnimation(currentWeatherIcon.getIcon());
         currentWeatherAnimationView.playAnimation();
-        currentTemperatureView.setText("Temp: " + weatherResponse.currentWeather.getTemperature() + " °C");
-        currentWindView.setText("Wind: " + weatherResponse.currentWeather.getWindSpeed() + " m/s");
-        if (weatherResponse.currentWeather.getPrecipType() != null) {
-            currentPrecipitationTypeView.setText("Type: " + weatherResponse.currentWeather.getPrecipType().toUpperCase());
+        currentTemperatureView.setText("Temp: " + currentWeather.getTemperature() + " °C");
+        currentWindView.setText("Wind: " + currentWeather.getWindSpeed() + " m/s");
+        if (currentWeather.getPrecipType() != null) {
+            currentPrecipitationTypeView.setText("Type: " + currentWeather.getPrecipType().toUpperCase());
         } else {
             currentPrecipitationTypeView.setText("Type: -");
         }
         double currentPrecipitationProbability = Double.valueOf(weatherResponse.getCurrentWeather().getPrecipProbability()) * 100;
         currentPrecipitationProbabilityView.setText("Prob: " + (int) currentPrecipitationProbability + "%");
-        currentSummaryView.setText(weatherResponse.currentWeather.getSummary());
+        currentSummaryView.setText(currentWeather.getSummary());
 
 
         forecastViewFirst.setWeather(weatherResponse.getDailyWeather().getWeatherData().get(0));

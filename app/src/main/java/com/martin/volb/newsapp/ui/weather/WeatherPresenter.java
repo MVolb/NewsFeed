@@ -1,5 +1,9 @@
 package com.martin.volb.newsapp.ui.weather;
 
+import com.martin.volb.newsapp.ui.weather.data.WeatherResponse;
+import com.martin.volb.newsapp.ui.weather.network.RetroFitClientWeather;
+import com.martin.volb.newsapp.ui.weather.network.WeatherService;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

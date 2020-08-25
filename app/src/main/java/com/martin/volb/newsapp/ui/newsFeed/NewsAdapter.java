@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.martin.volb.newsapp.R;
+import com.martin.volb.newsapp.ui.newsFeed.data.Article;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

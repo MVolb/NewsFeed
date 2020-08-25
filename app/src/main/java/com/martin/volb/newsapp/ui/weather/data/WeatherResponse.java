@@ -1,16 +1,19 @@
-package com.martin.volb.newsapp.ui.weather;
+package com.martin.volb.newsapp.ui.weather.data;
 
 import com.google.gson.annotations.SerializedName;
+import com.martin.volb.newsapp.ui.weather.data.DailyWeather;
+import com.martin.volb.newsapp.ui.weather.data.WeatherAlert;
+import com.martin.volb.newsapp.ui.weather.data.WeatherData;
 
 import java.util.ArrayList;
 
 public class WeatherResponse {
     @SerializedName("currently")
-    WeatherData currentWeather;
+    private WeatherData currentWeather;
     @SerializedName("alerts")
-    ArrayList<WeatherAlert> weatherAlerts;
+    private ArrayList<WeatherAlert> weatherAlerts;
     @SerializedName("daily")
-    DailyWeather dailyWeather;
+    private DailyWeather dailyWeather;
 
     public WeatherResponse(WeatherData currentWeather, ArrayList<WeatherAlert> weatherAlerts, DailyWeather dailyWeather) {
         this.currentWeather = currentWeather;

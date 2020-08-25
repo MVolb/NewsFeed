@@ -4,9 +4,9 @@ import android.content.Context;
 
 import androidx.room.Room;
 
-import com.martin.volb.newsapp.ui.newsFeed.Article;
+import com.martin.volb.newsapp.ui.newsFeed.data.Article;
 import com.martin.volb.newsapp.ui.newsFeed.ArticleDao;
-import com.martin.volb.newsapp.ui.savedNews.ArticleDatabase;
+import com.martin.volb.newsapp.ui.newsFeed.savedNews.ArticleDatabase;
 
 public class DetailPresenter {
     private DetailView detailView;

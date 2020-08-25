@@ -1,4 +1,4 @@
-package com.martin.volb.newsapp.ui.newsFeed;
+package com.martin.volb.newsapp.ui.newsFeed.data;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

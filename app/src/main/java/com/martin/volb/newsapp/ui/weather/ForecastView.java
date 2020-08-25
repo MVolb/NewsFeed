@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.martin.volb.newsapp.R;
+import com.martin.volb.newsapp.ui.weather.data.WeatherData;
 
 public class ForecastView extends LinearLayout {
     private LottieAnimationView forecastWeatherAnimationView;
