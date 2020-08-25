@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_news">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.martin.volb.newsapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_news"
+        android:name="com.martin.volb.newsapp.ui.newsFeed.NewsFragment"
+        android:label="@string/title_news"
+        tools:layout="@layout/fragment_news" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.martin.volb.newsapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_weather"
+        android:name="com.martin.volb.newsapp.ui.weather.WeatherFragment"
+        android:label="@string/title_weather"
+        tools:layout="@layout/fragment_weather" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.martin.volb.newsapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_saved_news"
+        android:name="com.martin.volb.newsapp.ui.newsFeed.savedNews.SavedNewsFragment"
+        android:label="@string/title_saved_news"
+        tools:layout="@layout/fragment_saved_news" />
 </navigation>

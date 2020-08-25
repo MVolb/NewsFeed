@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">NewsApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_news">News</string>
+    <string name="title_weather">Weather</string>
+    <string name="title_saved_news">Saved News</string>
+    <string name="news_api_key">9f0a5f2d67c94a77ba0f7d846f2c3b6b</string>
+    <string name="title_string">News</string>
+    <string name="weather_api_key">f0f1896b6a51acebffd8784518c56eed</string>
+    <string name="no_location_permission">To access weather data, please enable location permission in settings</string>
+    <string name="read_full_article">Read full Article</string>
+    <color name="text_color">#f0f0f0</color>
 </resources>
